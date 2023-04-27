@@ -1,0 +1,74 @@
+<div class="container mt-5">
+  <h2>User Register</h2>
+
+  <form [formGroup]="form" (ngSubmit)="onSubmit()">
+    <div class="mb-3 mt-3">
+      <label for="username" class="form-label">User Name:</label>
+      <input
+        type="text"
+        class="form-control"
+        placeholder="Enter User Name"
+        formControlName="username"
+        id="username"
+      />
+
+      <div
+        *ngIf="
+          form.controls['username'].invalid && form.controls['username'].touched
+        "
+      >
+        <div class="alert alert-danger">User Name is required</div>
+      </div>
+    </div>
+
+    <div class="mb-3">
+      <label for="password" class="form-label">Password:</label>
+      <input
+        type="password"
+        class="form-control"
+        placeholder="Enter password"
+        formControlName="password"
+        id="password"
+      />
+      <div
+        *ngIf="
+          form.controls['password'].invalid && form.controls['password'].touched
+        "
+      >
+        <div class="alert alert-danger">Password is required</div>
+      </div>
+      <div *ngIf="form.controls['password'].hasError('minlength')">
+        <div class="alert alert-danger">
+          Password length should be minimum 6 and maximum 40.
+        </div>
+      </div>
+    </div>
+    <div class="mb-3">
+      <label for="confirmPassword" class="form-label">Confirm Password:</label>
+      <input
+        type="password"
+        class="form-control"
+        placeholder="Enter Confirm password"
+        formControlName="confirmPassword"
+        id="confirmPassword"
+      />
+      <div
+        *ngIf="
+          form.controls['confirmPassword'].invalid &&
+          form.controls['confirmPassword'].touched
+        "
+      >
+        <div class="alert alert-danger">Confirm Password is required</div>
+      </div>
+    </div>
+
+    <div *ngIf="errorMessage.length > 0">
+      <div class="alert alert-danger">{{ errorMessage }}</div>
+    </div>
+
+    <button type="submit" class="btn btn-primary">Submit</button>
+    <button type="button" (click)="onReset()" class="btn btn-warning m-2">
+      Reset
+    </button>
+  </form>
+</div>
