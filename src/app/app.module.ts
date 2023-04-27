@@ -13,6 +13,7 @@ import { AuthInterceptorService } from './authInterceptorService';
 import { ToastrModule } from 'ngx-toastr';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HomeComponent } from './home/home.component';
+import { AddPropertyComponent } from './add-property/add-property.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -20,6 +21,7 @@ import { HomeComponent } from './home/home.component';
     RegisterComponent,
     HeaderComponent,
     HomeComponent,
+    AddPropertyComponent,
   ],
   imports: [
     BrowserModule,

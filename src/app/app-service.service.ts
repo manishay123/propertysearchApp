@@ -34,6 +34,13 @@ export class AppServiceService {
   }
 
 
+  getAllProperties(): Observable<any> {
+    return this.http.get<any>(this.serviceUrl + "property");
+  }
+
+  addProperty(property: any): Observable<any> {
+    return this.http.post<any>(this.serviceUrl + "property", property);
+  }
 
   handleError(errorResponse: HttpErrorResponse) {
     return throwError(errorResponse.error.message);
