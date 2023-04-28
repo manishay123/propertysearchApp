@@ -82,7 +82,6 @@ export class AuthServiceService {
 
   logout() {
     this.user.next(null);
-    window.location.href = "/login";
     this.removeUser();
     if (this.tokenExirationTimer) {
       clearTimeout(this.tokenExirationTimer);

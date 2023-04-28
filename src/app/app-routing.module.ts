@@ -5,6 +5,8 @@ import { RouterModule, Routes } from '@angular/router';
 import { LoginComponent } from './login/login.component';
 import { HomeComponent } from './home/home.component';
 import { AddPropertyComponent } from './add-property/add-property.component';
+import { EditPropertyComponent } from './edit-property/edit-property.component';
+import { RoleGuardGuard } from './role-guard.guard';
 
 const routes: Routes = [
   { path: '', pathMatch: 'full', redirectTo: 'home' },
@@ -17,7 +19,10 @@ const routes: Routes = [
     path: "home", component: HomeComponent, canActivate: [AuthGuardGuard]
   },
   {
-    path: "addProperty", component: AddPropertyComponent, canActivate: [AuthGuardGuard]
+    path: "addProperty", component: AddPropertyComponent, canActivate: [AuthGuardGuard, RoleGuardGuard]
+  },
+  {
+    path: "editProperty/:id", component: EditPropertyComponent, canActivate: [AuthGuardGuard, RoleGuardGuard]
   },
 
 ];

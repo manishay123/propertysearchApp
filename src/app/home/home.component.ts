@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { AppServiceService } from '../app-service.service';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { ToastrService } from 'ngx-toastr';
+import { AuthServiceService } from '../auth-service.service';
 
 @Component({
   selector: 'app-home',
@@ -14,10 +15,13 @@ export class HomeComponent {
 
   });
 
+  roleName!: string;
   properties!: Property[];
-  constructor(private toastr: ToastrService, private appService: AppServiceService, private formBuilder: FormBuilder) { }
+  constructor(private authService: AuthServiceService, private toastr: ToastrService, private appService: AppServiceService, private formBuilder: FormBuilder) { }
 
   ngOnInit(): void {
+
+    this.roleName = this.authService.user.value?.user.roleName;
 
     this.appService.getAllProperties().subscribe(data => {
 
@@ -29,9 +33,9 @@ export class HomeComponent {
     this.searchForm = this.formBuilder.group(
       {
         firstName: [''],
-        lastname: [''],
+        lastName: [''],
         address: [''],
-        type: [''],
+        propertyType: [''],
       }
     );
 
@@ -40,6 +44,11 @@ export class HomeComponent {
 
   onsearch(): void {
 
+    this.appService.searchProperty(this.searchForm.value).subscribe(data => {
+
+      this.properties = data;
+
+    });
 
   }
 

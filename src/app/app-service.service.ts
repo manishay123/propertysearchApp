@@ -42,9 +42,21 @@ export class AppServiceService {
     return this.http.post<any>(this.serviceUrl + "property", property);
   }
 
+  editProperty(property: any, id: any): Observable<any> {
+    return this.http.put<any>(this.serviceUrl + "property/" + id, property);
+  }
+  
+  getProperty(id: any): Observable<any> {
+    return this.http.get<any>(this.serviceUrl + "property/" + id);
+  }
+
 
   deleteProperty(id: any): Observable<any> {
     return this.http.delete<any>(this.serviceUrl + "property" + "/" + id);
+  }
+
+  searchProperty(data: any): Observable<any> {
+    return this.http.post<any>(this.serviceUrl + "searchPropertyWithField", data);
   }
 
   handleError(errorResponse: HttpErrorResponse) {

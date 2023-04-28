@@ -25,7 +25,7 @@
           >
         </li>
 
-        <li *ngIf="isLoggedin" class="nav-item">
+        <li *ngIf="isLoggedin && roleName === 'Admin'" class="nav-item">
           <a
             class="nav-link active"
             aria-current="page"
@@ -43,6 +43,9 @@
         />
         <button class="btn btn-outline-success" type="submit">Search</button>
       </form> -->
+
+      <label class="text fw-bold"> Welcome {{ userName }}</label>
+
       <button *ngIf="isLoggedin" class="btn btn-danger m-2" (click)="logout()">
         Logout
       </button>

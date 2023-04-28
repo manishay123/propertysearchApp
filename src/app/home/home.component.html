@@ -14,11 +14,11 @@
         </div>
         <div class="col-md-2">
           <div class="mb-3">
-            <label for="lastname" class="form-label">LastName:</label>
+            <label for="lastName" class="form-label">LastName:</label>
             <input
               type="text"
               class="form-control"
-              formControlName="lastname"
+              formControlName="lastName"
             />
           </div>
         </div>
@@ -30,8 +30,12 @@
         </div>
         <div class="col-md-2">
           <div class="mb-3">
-            <label for="type" class="form-label">PropertyType:</label>
-            <input type="text" class="form-control" formControlName="type" />
+            <label for="propertyType" class="form-label">PropertyType:</label>
+            <input
+              type="text"
+              class="form-control"
+              formControlName="propertyType"
+            />
           </div>
         </div>
         <div class="col-md-1">
@@ -59,7 +63,7 @@
         <th>Tax Amount</th>
         <th>Tax Status</th>
         <th>Property Owner</th>
-        <th>Action</th>
+        <th *ngIf="roleName === 'Admin'">Action</th>
       </tr>
     </thead>
     <tbody>
@@ -69,7 +73,8 @@
         <td>{{ property.type }}</td>
         <td>{{ property.description }}</td>
         <td>{{ property.taxAmount }}</td>
-        <td>{{ property.taxStatus }}</td>
+        <td *ngIf="property.taxStatus == true">Paid</td>
+        <td *ngIf="property.taxStatus == false">UnPaid</td>
         <td>
           {{
             property.propertyOwner.firstName +
@@ -77,8 +82,12 @@
               property.propertyOwner.lastName
           }}
         </td>
-        <td>
-          <button class="btn btn-warning mx-3" (click)="deleteItem(property.id)">
+        <td *ngIf="roleName === 'Admin'">
+          <button
+            class="btn btn-warning mx-3"
+            [routerLink]="['/editProperty/', property.id]"
+            routerLinkActive="router-link-active"
+          >
             Edit
           </button>
           <button class="btn btn-danger" (click)="deleteItem(property.id)">

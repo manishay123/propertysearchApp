@@ -15,6 +15,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HomeComponent } from './home/home.component';
 import { AddPropertyComponent } from './add-property/add-property.component';
 import { AlertComponent } from './alert/alert.component';
+import { EditPropertyComponent } from './edit-property/edit-property.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -24,6 +25,7 @@ import { AlertComponent } from './alert/alert.component';
     HomeComponent,
     AlertComponent,
     AddPropertyComponent,
+    EditPropertyComponent,
   ],
   imports: [
     BrowserModule,

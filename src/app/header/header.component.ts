@@ -9,10 +9,15 @@ import { Component, OnInit } from '@angular/core';
 })
 export class HeaderComponent implements OnInit {
 
+  userName!: string;
+  roleName !: string;
   isLoggedin: boolean = false;
   constructor(private authService: AuthServiceService, private router: Router) { }
 
   ngOnInit(): void {
+
+    this.roleName = this.authService.user.value?.user.roleName;
+    this.userName = this.authService.user.value?.user.userName;
 
     if (this.authService.checklogin()) {
       this.isLoggedin = true;
