@@ -1,29 +1,37 @@
 <div class="container">
-  <form>
+  <form [formGroup]="searchForm" (submit)="onsearch()">
     <div class="container-fluid">
       <div class="row">
         <div class="col-md-2">
           <div class="mb-3">
-            <label for="fromDate" class="form-label">FirstName:</label>
-            <input type="text" class="form-control" />
+            <label for="firstName" class="form-label">FirstName:</label>
+            <input
+              type="text"
+              formControlName="firstName"
+              class="form-control"
+            />
           </div>
         </div>
         <div class="col-md-2">
           <div class="mb-3">
-            <label for="ToDate" class="form-label">LastName:</label>
-            <input type="text" class="form-control" />
+            <label for="lastname" class="form-label">LastName:</label>
+            <input
+              type="text"
+              class="form-control"
+              formControlName="lastname"
+            />
           </div>
         </div>
         <div class="col-md-2">
           <div class="mb-3">
-            <label for="ToDate" class="form-label">Address:</label>
-            <input type="text" class="form-control" />
+            <label for="address" class="form-label">Address:</label>
+            <input type="text" class="form-control" formControlName="address" />
           </div>
         </div>
         <div class="col-md-2">
           <div class="mb-3">
-            <label for="ToDate" class="form-label">PropertyType:</label>
-            <input type="text" class="form-control" />
+            <label for="type" class="form-label">PropertyType:</label>
+            <input type="text" class="form-control" formControlName="type" />
           </div>
         </div>
         <div class="col-md-1">
@@ -51,6 +59,7 @@
         <th>Tax Amount</th>
         <th>Tax Status</th>
         <th>Property Owner</th>
+        <th>Action</th>
       </tr>
     </thead>
     <tbody>
@@ -59,15 +68,23 @@
         <td>{{ property.address }}</td>
         <td>{{ property.type }}</td>
         <td>{{ property.description }}</td>
-        <th>{{ property.taxAmount }}</th>
-        <th>{{ property.taxStatus }}</th>
-        <th>
+        <td>{{ property.taxAmount }}</td>
+        <td>{{ property.taxStatus }}</td>
+        <td>
           {{
             property.propertyOwner.firstName +
               " " +
               property.propertyOwner.lastName
           }}
-        </th>
+        </td>
+        <td>
+          <button class="btn btn-warning mx-3" (click)="deleteItem(property.id)">
+            Edit
+          </button>
+          <button class="btn btn-danger" (click)="deleteItem(property.id)">
+            Delete
+          </button>
+        </td>
       </tr>
     </tbody>
   </table>

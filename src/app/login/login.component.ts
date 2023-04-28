@@ -13,10 +13,7 @@ import { ToastrService } from 'ngx-toastr';
 })
 export class LoginComponent implements OnInit {
 
-  form: FormGroup = new FormGroup({
-    'username': new FormGroup(''),
-    'password': new FormGroup('')
-  })
+  form: FormGroup = new FormGroup({})
 
   isSubmit: boolean = false;
   isError: boolean = false;
@@ -64,9 +61,14 @@ export class LoginComponent implements OnInit {
 
 
     }, error => {
-      this.toastr.error('Login Failed.', 'Error');
-      this.errorMessage = error.error.message;
-      this.isError = true
+      console.log(error);
+
+      if (error.statusText = "OK") {
+        this.toastr.error('Login Failed.', 'Error');
+        this.errorMessage = error.error.message;
+        this.isError = true
+      }
+
 
     })
 

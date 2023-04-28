@@ -14,10 +14,10 @@ const routes: Routes = [
     path: "register", component: RegisterComponent
   },
   {
-    path: "home", component: HomeComponent
+    path: "home", component: HomeComponent, canActivate: [AuthGuardGuard]
   },
   {
-    path: "addProperty", component: AddPropertyComponent
+    path: "addProperty", component: AddPropertyComponent, canActivate: [AuthGuardGuard]
   },
 
 ];

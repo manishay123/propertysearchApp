@@ -34,7 +34,7 @@ export class AddPropertyComponent {
       type: ['', Validators.required],
       description: ['', Validators.required],
       taxAmount: ['', Validators.required],
-      taxStatus: ['Yes'],
+      taxStatus: ['true'],
       firstName: ['', Validators.required],
       lastName: ['', Validators.required]
     });
@@ -65,7 +65,7 @@ export class AddPropertyComponent {
 
 
     }, error => {
-      this.toastr.success("Something went wrong", 'Error');
+      this.toastr.error("Something went wrong", 'Error');
     })
   }
 

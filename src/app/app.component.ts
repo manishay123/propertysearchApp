@@ -14,11 +14,11 @@ export class AppComponent implements OnInit {
 
   ngOnInit() {
 
-
     this.authService.timeout.subscribe((isTimeOut) => {
 
       if (isTimeOut)
         this.error = 'Your session is expired. Please Login again!';
+
     });
     this.authService.autoLogin();
   }

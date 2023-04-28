@@ -42,6 +42,11 @@ export class AppServiceService {
     return this.http.post<any>(this.serviceUrl + "property", property);
   }
 
+
+  deleteProperty(id: any): Observable<any> {
+    return this.http.delete<any>(this.serviceUrl + "property" + "/" + id);
+  }
+
   handleError(errorResponse: HttpErrorResponse) {
     return throwError(errorResponse.error.message);
   }
