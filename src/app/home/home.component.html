@@ -47,6 +47,16 @@
             Search
           </button>
         </div>
+        <div class="col-md-1">
+          <span
+            type="submit"
+            (click)="resetProperties()"
+            class="btn btn-warning pull-right"
+            style="margin-top: 32px"
+          >
+            Clear
+          </span>
+        </div>
       </div>
     </div>
   </form>
@@ -66,7 +76,7 @@
         <th *ngIf="roleName === 'Admin'">Action</th>
       </tr>
     </thead>
-    <tbody>
+    <tbody *ngIf="properties.length !== 0">
       <tr *ngFor="let property of properties">
         <td>{{ property.id }}</td>
         <td>{{ property.address }}</td>
@@ -97,4 +107,10 @@
       </tr>
     </tbody>
   </table>
+  <div
+    class="mt-3 container d-flex justify-content-center"
+    *ngIf="properties.length === 0"
+  >
+    <h5 class="text-center">No properties found.</h5>
+  </div>
 </div>

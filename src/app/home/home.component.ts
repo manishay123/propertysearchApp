@@ -3,6 +3,7 @@ import { AppServiceService } from '../app-service.service';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { ToastrService } from 'ngx-toastr';
 import { AuthServiceService } from '../auth-service.service';
+import { NavigationEnd, Router } from '@angular/router';
 
 @Component({
   selector: 'app-home',
@@ -16,8 +17,8 @@ export class HomeComponent {
   });
 
   roleName!: string;
-  properties!: Property[];
-  constructor(private authService: AuthServiceService, private toastr: ToastrService, private appService: AppServiceService, private formBuilder: FormBuilder) { }
+  properties: Property[] = [];
+  constructor(private authService: AuthServiceService, private toastr: ToastrService, private appService: AppServiceService, private formBuilder: FormBuilder, private router: Router) { }
 
   ngOnInit(): void {
 
@@ -40,7 +41,18 @@ export class HomeComponent {
     );
 
 
+
   }
+
+
+  resetProperties() {
+    this.appService.getAllProperties().subscribe(data => {
+
+      console.log(data);
+      this.properties = data;
+    })
+  }
+
 
   onsearch(): void {
 
@@ -49,6 +61,9 @@ export class HomeComponent {
       this.properties = data;
 
     });
+
+    console.log(this.properties);
+
 
   }
 
